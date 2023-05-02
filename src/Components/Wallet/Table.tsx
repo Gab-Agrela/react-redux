@@ -1,42 +1,21 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { RootState, WalletFormProps } from "../../Interfaces";
-import { useDispatch } from "react-redux";
-import { deleteExpenses } from "../../Redux/Actions";
+import Expense from "./Expense";
 
 function Table() {
   const { expenses } = useSelector((state: RootState) => state.wallet);
 
-  const dispatch = useDispatch();
-
-  const removeExpenses = (event: React.MouseEvent<HTMLButtonElement>) => {
-    const { id } = event.target as HTMLButtonElement;
-    dispatch(deleteExpenses(Number(id)));
-  };
-
   const creatingExpenses = expenses
     .sort((a: any, b: any) => a.id - b.id)
     .map((expense: WalletFormProps) => (
-      <tr key={expense.id}>
-        <td>{expense.description}</td>
-        <td>{expense.tag}</td>
-        <td>{expense.method}</td>
-        <td>{Number(expense.value).toFixed(2)}</td>
-        <td>Real</td>
-        <td>
-          <button type="button" className="editar">
-            Editar
-          </button>
-          <button
-            type="button"
-            className="excluir"
-            onClick={removeExpenses}
-            id={expense.id.toString()}
-          >
-            Excluir
-          </button>
-        </td>
-      </tr>
+      <Expense
+        id={expense.id}
+        description={expense.description}
+        tag={expense.tag}
+        method={expense.method}
+        value={expense.value}
+      />
     ));
 
   return (
