@@ -1,7 +1,14 @@
 import React from "react";
+import Header from "../Components/Wallet/Header";
+import Form from "../Components/Wallet/Form";
 
 const Wallet = () => {
-  return <h1>Wallet Page</h1>;
+  return (
+    <>
+      <Header />
+      <Form />
+    </>
+  );
 };
 
 export default Wallet;

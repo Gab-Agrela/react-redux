@@ -1,5 +1,5 @@
 import React from "react";
-import LoginForm from "../Components/LoginForm";
+import LoginForm from "../Components/Login/Form";
 import styled from "styled-components";
 
 const Login = () => {

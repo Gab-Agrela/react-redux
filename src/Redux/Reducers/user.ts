@@ -1,7 +1,4 @@
-interface EmailAction {
-  type: 'SAVE_EMAIL';
-  payload: string;
-}
+import {EmailAction} from "../../Interfaces";
 
 const INITIAL_STATE = {
   email: '', 
