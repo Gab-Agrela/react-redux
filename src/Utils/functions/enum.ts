@@ -1,0 +1,5 @@
+export enum actionsTypes {
+  SAVE_EMAIL ='SAVE_EMAIL',
+  SEND_EXPENSES = 'SEND_EXPENSES',
+  DELETE_EXPENSES = 'DELETE_EXPENSES',
+}

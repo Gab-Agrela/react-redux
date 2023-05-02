@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../../Redux/Reducers";
+import { RootState } from "../../Interfaces";
 
 function Header() {
   const { email } = useSelector((state: RootState) => state.user);

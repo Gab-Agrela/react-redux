@@ -1,10 +1,25 @@
-const SAVE_EMAIL = 'SAVE_EMAIL';
+import { WalletFormProps } from "../../Interfaces";
+import { actionsTypes } from "../../Utils/functions/enum";
 
 function saveEmail(email: string) {
   return {
-    type: SAVE_EMAIL,
+    type: actionsTypes.SAVE_EMAIL,
     payload: email,
   };
 };
 
-export default saveEmail;
+function sendExpenses(object: WalletFormProps) {
+  return {
+    type: actionsTypes.SEND_EXPENSES,
+    payload: object,
+  };
+}
+
+function deleteExpenses(id: number) {
+  return {
+    type: actionsTypes.DELETE_EXPENSES,
+    payload: id,
+  };
+}
+
+export {saveEmail, sendExpenses, deleteExpenses};

@@ -2,7 +2,7 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import { validateLogin } from "../../Utils/functions";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import saveEmail from "../../Redux/Actions";
+import { saveEmail } from "../../Redux/Actions";
 import styled from "styled-components";
 import { UserProps } from "../../Interfaces";
 
