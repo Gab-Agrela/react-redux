@@ -1,5 +1,6 @@
 import React from "react";
 import LoginForm from "../Components/LoginForm";
+<<<<<<< HEAD
 import styled from "styled-components";
 
 const Login = () => {
@@ -11,6 +12,15 @@ const Login = () => {
       </TitleContainer>
       <LoginForm />
     </Flex>
+=======
+
+const Login = () => {
+  return (
+    <div>
+      <h1>Login Page</h1>
+      <LoginForm />
+    </div>
+>>>>>>> c9dd8683f09c5aaf98b30a4f74806915cd5c2f22
   );
 };
 
