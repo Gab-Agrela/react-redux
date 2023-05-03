@@ -2,6 +2,7 @@ import React, { ChangeEvent, useState } from "react";
 import { WalletFormProps } from "../../Interfaces";
 import { sendExpenses } from "../../Redux/Actions";
 import { useDispatch } from "react-redux";
+import styled from "styled-components";
 
 function Form() {
   const [formValues, setFormValues] = useState<WalletFormProps>({
@@ -34,8 +35,8 @@ function Form() {
   };
 
   return (
-    <div>
-      <div>
+    <FormContainer>
+      <Flex>
         <input
           type="number"
           name="value"
@@ -70,9 +71,60 @@ function Form() {
             Adicionar despesa
           </button>
         )}
-      </div>
-    </div>
+      </Flex>
+    </FormContainer>
   );
 }
+
+const FormContainer = styled.div`
+  background-color: #3c7ca7;
+  padding: 15px;
+`;
+
+const Flex = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  background-color: #3c7ca7;
+  padding: 5px;
+  input {
+    padding: 5px;
+    border: none;
+    border-bottom: 1px solid white;
+    background-color: #3c7ca7;
+    color: black;
+    margin: 5px;
+    ::placeholder {
+      color: whitesmoke;
+    }
+  }
+
+  button {
+    margin-top: 15px;
+    text-align: center;
+    background-color: rgb(83, 156, 201);
+    border: none;
+    color: white;
+    font-weight: 400;
+    border-radius: 3px;
+    padding: 5px;
+    :hover {
+      background-color: #1a91d6;
+    }
+  }
+  select {
+    margin-top: 15px;
+    text-align: center;
+    background-color: rgb(83, 156, 201);
+    border: none;
+    color: white;
+    font-weight: 400;
+    border-radius: 3px;
+    padding: 5px;
+    :hover {
+      background-color: #1a91d6;
+    }
+  }
+`;
 
 export default Form;
