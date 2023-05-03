@@ -8,7 +8,7 @@ function Table() {
   const { expenses } = useSelector((state: RootState) => state.wallet);
 
   const creatingExpenses = expenses
-    .sort((a: any, b: any) => a.id - b.id)
+    .sort((a: WalletFormProps, b: WalletFormProps) => a.id - b.id)
     .map((expense: WalletFormProps) => (
       <Expense
         id={expense.id}

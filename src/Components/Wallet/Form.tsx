@@ -40,7 +40,6 @@ function Form() {
   };
 
   const editExpense = () => {
-    console.log({ ...formValues, id: editExpenseId });
     dispatch(sendNewExpenseValue({ ...formValues, id: editExpenseId }));
     setFormValues({
       id: formValues.id,
