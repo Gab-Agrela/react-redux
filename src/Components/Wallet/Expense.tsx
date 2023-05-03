@@ -1,7 +1,7 @@
 import React from "react";
 import { WalletFormProps } from "../../Interfaces";
 import { useDispatch } from "react-redux";
-import { deleteExpenses } from "../../Redux/Actions";
+import { deleteExpenses, editExpenseValue } from "../../Redux/Actions";
 import styled from "styled-components";
 
 function Expense({ id, description, tag, method, value }: WalletFormProps) {
@@ -11,6 +11,11 @@ function Expense({ id, description, tag, method, value }: WalletFormProps) {
     const { id } = event.target as HTMLButtonElement;
     dispatch(deleteExpenses(Number(id)));
   };
+
+  const editExpense = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const { id } = event.target as HTMLButtonElement;
+    dispatch(editExpenseValue(Number(id)));
+  };
   return (
     <Row key={id}>
       <td>{description}</td>
@@ -19,7 +24,9 @@ function Expense({ id, description, tag, method, value }: WalletFormProps) {
       <td>{Number(value).toFixed(2)}</td>
       <td>Real</td>
       <td>
-        <EditButton type="button">Editar</EditButton>
+        <EditButton type="button" onClick={editExpense} id={id.toString()}>
+          Editar
+        </EditButton>
         <DeleteButton type="button" onClick={removeExpenses} id={id.toString()}>
           Excluir
         </DeleteButton>

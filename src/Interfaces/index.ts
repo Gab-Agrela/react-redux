@@ -3,7 +3,8 @@ interface RootState {
     email: string
   },
   wallet: {
-    expenses: WalletFormProps[]
+    expenses: WalletFormProps[],
+    editExpenseId: number,
   }
 }
 
@@ -13,8 +14,8 @@ interface EmailAction {
 }
 
 interface WalletAction {
-  type: 'SEND_EXPENSES' | 'DELETE_EXPENSES',
-  payload: object | number
+  type: string ,
+  payload: WalletFormProps | number
 }
 
 interface UserProps {

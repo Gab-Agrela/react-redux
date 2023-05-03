@@ -1,8 +1,9 @@
-import React, { ChangeEvent, useState } from "react";
-import { WalletFormProps } from "../../Interfaces";
-import { sendExpenses } from "../../Redux/Actions";
+import React, { ChangeEvent, useEffect, useState } from "react";
+import { RootState, WalletFormProps } from "../../Interfaces";
+import { sendExpenses, sendNewExpenseValue } from "../../Redux/Actions";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 function Form() {
   const [formValues, setFormValues] = useState<WalletFormProps>({
@@ -12,6 +13,10 @@ function Form() {
     method: "Dinheiro",
     tag: "Alimentação",
   });
+  const [isDisabled, setIsDisabled] = useState<boolean>(true);
+  const { expenses, editExpenseId } = useSelector(
+    (state: RootState) => state.wallet
+  );
 
   const dispatch = useDispatch();
 
@@ -33,6 +38,31 @@ function Form() {
       tag: "Alimentação",
     });
   };
+
+  const editExpense = () => {
+    console.log({ ...formValues, id: editExpenseId });
+    dispatch(sendNewExpenseValue({ ...formValues, id: editExpenseId }));
+    setFormValues({
+      id: formValues.id,
+      value: "",
+      description: "",
+      method: "Dinheiro",
+      tag: "Alimentação",
+    });
+  };
+
+  useEffect(() => {
+    setIsDisabled(!(formValues.value && formValues.description));
+  }, [formValues]);
+
+  useEffect(() => {
+    if (editExpenseId !== 0) {
+      const editExpense: WalletFormProps | undefined = expenses.find(
+        (expense) => expense.id === editExpenseId
+      );
+      editExpense && setFormValues({ ...editExpense, id: formValues.id });
+    }
+  }, [editExpenseId, expenses, formValues.id]);
 
   return (
     <FormContainer>
@@ -64,10 +94,12 @@ function Form() {
           <option>Transporte</option>
           <option>Saúde</option>
         </select>
-        {false ? (
-          <button type="button">Editar despesa</button>
+        {editExpenseId ? (
+          <button type="button" onClick={editExpense}>
+            Editar despesa
+          </button>
         ) : (
-          <button type="button" onClick={addExpenses}>
+          <button type="button" onClick={addExpenses} disabled={isDisabled}>
             Adicionar despesa
           </button>
         )}
@@ -110,6 +142,10 @@ const Flex = styled.div`
     padding: 5px;
     :hover {
       background-color: #1a91d6;
+    }
+    :disabled {
+      background-color: #94bfd9;
+      opacity: 0.7;
     }
   }
   select {

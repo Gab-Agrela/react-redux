@@ -22,4 +22,18 @@ function deleteExpenses(id: number) {
   };
 }
 
-export {saveEmail, sendExpenses, deleteExpenses};
+function editExpenseValue(id: number) {
+  return {
+    type: actionsTypes.EDIT_VALUE,
+    payload: id,
+  };
+}
+
+function sendNewExpenseValue(object: WalletFormProps) {
+  return {
+    type: actionsTypes.SEND_EDITED_VALUE,
+    payload: object,
+  };
+}
+
+export {saveEmail, sendExpenses, deleteExpenses, editExpenseValue, sendNewExpenseValue};
